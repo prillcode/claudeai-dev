@@ -1,0 +1,25 @@
+{
+  "account_id": "123456789012",
+  "region": "us-east-1",
+  "scan_timestamp": "2025-01-07T15:30:00Z",
+  "profile": "prod",
+  "filters_applied": {
+    "tags": {
+      "project": "myapp",
+      "environment": "production"
+    },
+    "name_pattern": "order-*",
+    "resource_types": [
+      "lambda",
+      "dynamodb"
+    ]
+  },
+  "resource_counts": {
+    "lambdas": 3,
+    "dynamodb_tables": 2,
+    "iam_roles": 4,
+    "iam_policies": 2,
+    "s3_buckets": 1,
+    "eventbridge_rules": 2
+  }
+}

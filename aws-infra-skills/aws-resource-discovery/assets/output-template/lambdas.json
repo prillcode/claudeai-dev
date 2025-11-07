@@ -1,0 +1,105 @@
+[
+  {
+    "function_name": "order-processor",
+    "function_arn": "arn:aws:lambda:us-east-1:123456789012:function:order-processor",
+    "runtime": "nodejs18.x",
+    "handler": "index.handler",
+    "memory_size": 256,
+    "timeout": 30,
+    "description": "Processes incoming orders from EventBridge",
+    "environment_variables": {
+      "TABLE_NAME": "orders-table",
+      "BUCKET_NAME": "order-assets",
+      "LOG_LEVEL": "INFO"
+    },
+    "iam_role_arn": "arn:aws:iam::123456789012:role/order-processor-role",
+    "vpc_config": null,
+    "layers": [],
+    "dead_letter_config": null,
+    "last_modified": "2025-01-05T10:20:30.000Z",
+    "code_size": 1245678,
+    "code_sha256": "abc123def456...",
+    "architectures": [
+      "x86_64"
+    ],
+    "ephemeral_storage": 512,
+    "tags": {
+      "project": "myapp",
+      "environment": "production",
+      "service": "orders"
+    }
+  },
+  {
+    "function_name": "order-validator",
+    "function_arn": "arn:aws:lambda:us-east-1:123456789012:function:order-validator",
+    "runtime": "python3.11",
+    "handler": "app.handler",
+    "memory_size": 128,
+    "timeout": 10,
+    "description": "Validates order data before processing",
+    "environment_variables": {
+      "VALIDATION_RULES_TABLE": "validation-rules"
+    },
+    "iam_role_arn": "arn:aws:iam::123456789012:role/order-validator-role",
+    "vpc_config": {
+      "vpc_id": "vpc-12345678",
+      "subnet_ids": [
+        "subnet-abc123",
+        "subnet-def456"
+      ],
+      "security_group_ids": [
+        "sg-98765432"
+      ]
+    },
+    "layers": [
+      {
+        "arn": "arn:aws:lambda:us-east-1:123456789012:layer:validation-lib:5",
+        "code_size": 524288
+      }
+    ],
+    "dead_letter_config": {
+      "target_arn": "arn:aws:sqs:us-east-1:123456789012:order-dlq"
+    },
+    "last_modified": "2025-01-04T14:15:00.000Z",
+    "code_size": 856432,
+    "code_sha256": "xyz789uvw012...",
+    "architectures": [
+      "arm64"
+    ],
+    "ephemeral_storage": 512,
+    "tags": {
+      "project": "myapp",
+      "environment": "production",
+      "service": "orders"
+    }
+  },
+  {
+    "function_name": "order-notifier",
+    "function_arn": "arn:aws:lambda:us-east-1:123456789012:function:order-notifier",
+    "runtime": "nodejs18.x",
+    "handler": "notify.handler",
+    "memory_size": 512,
+    "timeout": 60,
+    "description": "Sends notifications for order status changes",
+    "environment_variables": {
+      "SNS_TOPIC_ARN": "arn:aws:sns:us-east-1:123456789012:order-notifications",
+      "EMAIL_TEMPLATE_BUCKET": "email-templates"
+    },
+    "iam_role_arn": "arn:aws:iam::123456789012:role/order-notifier-role",
+    "vpc_config": null,
+    "layers": [],
+    "dead_letter_config": null,
+    "last_modified": "2025-01-03T09:45:12.000Z",
+    "code_size": 2048576,
+    "code_sha256": "pqr345stu678...",
+    "architectures": [
+      "x86_64"
+    ],
+    "ephemeral_storage": 1024,
+    "tags": {
+      "project": "myapp",
+      "environment": "production",
+      "service": "notifications"
+    }
+  }
+]

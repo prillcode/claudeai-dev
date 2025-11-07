@@ -1,0 +1,62 @@
+[
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-processor",
+    "target": "arn:aws:iam::123456789012:role/order-processor-role",
+    "relationship": "lambda_uses_role",
+    "evidence": "Lambda execution role from function configuration"
+  },
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-processor",
+    "target": "arn:aws:dynamodb:us-east-1:123456789012:table/orders-table",
+    "relationship": "lambda_uses_table",
+    "evidence": "Environment variable TABLE_NAME=orders-table"
+  },
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-processor",
+    "target": "arn:aws:s3:::order-assets",
+    "relationship": "lambda_uses_bucket",
+    "evidence": "Environment variable BUCKET_NAME=order-assets"
+  },
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-validator",
+    "target": "arn:aws:iam::123456789012:role/order-validator-role",
+    "relationship": "lambda_uses_role",
+    "evidence": "Lambda execution role from function configuration"
+  },
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-validator",
+    "target": "arn:aws:dynamodb:us-east-1:123456789012:table/validation-rules",
+    "relationship": "lambda_uses_table",
+    "evidence": "Environment variable VALIDATION_RULES_TABLE=validation-rules"
+  },
+  {
+    "source": "arn:aws:lambda:us-east-1:123456789012:function:order-notifier",
+    "target": "arn:aws:iam::123456789012:role/order-notifier-role",
+    "relationship": "lambda_uses_role",
+    "evidence": "Lambda execution role from function configuration"
+  },
+  {
+    "source": "arn:aws:events:us-east-1:123456789012:rule/order-created",
+    "target": "arn:aws:lambda:us-east-1:123456789012:function:order-processor",
+    "relationship": "eventbridge_triggers_lambda",
+    "evidence": "Rule target: 1"
+  },
+  {
+    "source": "arn:aws:events:us-east-1:123456789012:rule/order-validation-required",
+    "target": "arn:aws:lambda:us-east-1:123456789012:function:order-validator",
+    "relationship": "eventbridge_triggers_lambda",
+    "evidence": "Rule target: 1"
+  },
+  {
+    "source": "arn:aws:iam::123456789012:role/order-processor-role",
+    "target": "arn:aws:iam::123456789012:policy/dynamodb-orders-access",
+    "relationship": "role_uses_policy",
+    "evidence": "Attached managed policy: dynamodb-orders-access"
+  },
+  {
+    "source": "arn:aws:iam::123456789012:role/order-processor-role",
+    "target": "arn:aws:iam::123456789012:policy/s3-assets-access",
+    "relationship": "role_uses_policy",
+    "evidence": "Attached managed policy: s3-assets-access"
+  }
+]
