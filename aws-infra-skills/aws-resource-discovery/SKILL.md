@@ -1,3 +1,8 @@
+---
+name: aws-resource-discovery
+description: Scan AWS accounts to discover existing resources and generate a comprehensive inventory with properties and dependencies. This skill should be used when discovering Lambda functions, DynamoDB tables, IAM roles/policies, S3 buckets, and EventBridge rules with filtering by tags, name patterns, or resource types.
+---
+
 # aws-resource-discovery
 
 Scan AWS accounts to discover existing resources and generate a comprehensive inventory with properties and dependencies.

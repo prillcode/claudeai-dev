@@ -1,0 +1,5 @@
+# Python dependencies for cdk-import-config-generator
+# CDK Import Config Generator - v1.0 MVP
+
+# No external dependencies required for MVP
+# Using Python 3.12+ standard library only

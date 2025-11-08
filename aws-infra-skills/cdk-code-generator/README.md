@@ -359,12 +359,19 @@ Includes all required CDK dependencies:
 1. **Review Generated Code**:
    ```bash
    cd cdk-generated
-   tree constructs/
+   ls -R constructs/
    ```
 
 2. **Install Dependencies**:
+
+   The generated constructs are TypeScript files that need CDK dependencies:
+
    ```bash
+   # Using npm
    npm install
+
+   # Or using pnpm (recommended)
+   pnpm install
    ```
 
 3. **Update Placeholders**:
@@ -374,8 +381,13 @@ Includes all required CDK dependencies:
 
 4. **Test Compilation**:
    ```bash
+   # Using npm
    npm run build
-   # or
+
+   # Or using pnpm
+   pnpm run build
+
+   # Or directly with tsc
    npx tsc
    ```
 
@@ -393,6 +405,8 @@ Includes all required CDK dependencies:
    # For existing resources
    cdk import MyStack
    ```
+
+> **Note**: The Python skill itself requires no installation (pure Python stdlib), but the **generated TypeScript constructs** need npm/pnpm to install CDK dependencies.
 
 ## Project Structure
 
@@ -444,9 +458,9 @@ cdk-code-generator/
 
 ### Issue: "Generated TypeScript doesn't compile"
 **Solution**:
-- Ensure you have TypeScript installed: `npm install -g typescript`
+- Ensure you have TypeScript installed: `npm install -g typescript` or `pnpm add -g typescript`
 - Check for TODO comments that need manual updates
-- Verify CDK dependencies are installed: `npm install`
+- Verify CDK dependencies are installed: `npm install` or `pnpm install`
 
 ### Issue: "Missing dependencies in generated code"
 **Solution**:

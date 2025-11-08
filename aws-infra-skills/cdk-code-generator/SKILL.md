@@ -1,3 +1,8 @@
+---
+name: cdk-code-generator
+description: Generate TypeScript CDK v2 code from AWS resource discovery JSON files. This skill should be used after aws-resource-discovery to create either reference-only imports or full management constructs for Lambda, DynamoDB, IAM, S3, and EventBridge resources.
+---
+
 # cdk-code-generator
 
 Generate TypeScript CDK v2 code from AWS resource discovery JSON files.

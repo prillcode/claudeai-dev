@@ -1,0 +1,5 @@
+# Python dependencies for cdk-stack-organizer
+# CDK Stack Organizer - v1.0 MVP
+
+# No external dependencies required for MVP
+# Using Python 3.12+ standard library only

@@ -1,0 +1,22 @@
+# AWS to CDK Importer - Orchestrator Dependencies
+# Python 3.8+ required
+
+# Note: The orchestrator primarily uses Python standard library
+# and invokes component skills via subprocess.
+# Component skills have their own requirements.txt files.
+
+# Component skill dependencies are installed separately:
+# - aws-resource-discovery/requirements.txt (boto3, etc.)
+# - cdk-code-generator/requirements.txt (jinja2, etc.)
+# - cdk-stack-organizer/requirements.txt
+# - cdk-import-config-generator/requirements.txt
+
+# No additional dependencies required for orchestrator
+# All imports use standard library:
+# - argparse
+# - json
+# - pathlib
+# - subprocess
+# - sys
+# - datetime
+# - typing
