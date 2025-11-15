@@ -1,5 +1,5 @@
 ---
-name: bmm-archive-feature-docs
+name: bmm-archive-branch-docs
 description: Archive completed BMAD feature documentation to prepare workflow for next major feature. Use when completing a feature branch and ready to restart the BMAD workflow for a new feature. Typically used before merging a feature branch to upstream.
 ---
 
@@ -7,7 +7,7 @@ description: Archive completed BMAD feature documentation to prepare workflow fo
 
 ## Overview
 
-Archive completed BMAD Method feature documentation when finishing a feature to prepare the workflow for the next major feature. This skill moves Epic and Story documentation files from the root BMAD Docs directory into an archive subdirectory, allowing the documentation workflow to restart cleanly for each new major feature.
+Archive completed BMAD Method feature documentation when finishing a feature branch to prepare the workflow for the next major, and keep upstream branch clean of feature/branch-specific workflow documentation (stories/epics). This skill moves Epic and Story documentation files from the root BMAD Docs directory into an archive subdirectory, allowing the documentation workflow to restart cleanly for each new major feature.
 
 ## When to Use This Skill
 
@@ -71,9 +71,8 @@ The script will:
 - Move these files from the root BMAD Docs directory to the archive:
   - `PRD.md`
   - `epics.md`
-  - `project-overview.md`
-  - `project-scan-report.json`
   - `sprint-status.yaml`
+  - `tech-spec.md`
   - `stories/` (directory including all files and subdirectories)
 - Report what was archived and what was skipped (if files don't exist)
 
@@ -83,9 +82,8 @@ The script will:
 mkdir -p <bmad-docs-dir>/archive/<archive-name>
 mv <bmad-docs-dir>/PRD.md <bmad-docs-dir>/archive/<archive-name>/
 mv <bmad-docs-dir>/epics.md <bmad-docs-dir>/archive/<archive-name>/
-mv <bmad-docs-dir>/project-overview.md <bmad-docs-dir>/archive/<archive-name>/
-mv <bmad-docs-dir>/project-scan-report.json <bmad-docs-dir>/archive/<archive-name>/
 mv <bmad-docs-dir>/sprint-status.yaml <bmad-docs-dir>/archive/<archive-name>/
+mv <bmad-docs-dir>/tech-spec.yaml <bmad-docs-dir>/archive/<archive-name>/
 mv <bmad-docs-dir>/stories/ <bmad-docs-dir>/archive/<archive-name>/
 ```
 
@@ -96,6 +94,8 @@ After archiving, inform the user that the feature docs have been archived and as
 **Important files to keep in root:**
 - `bmm-workflow-status.yml` - Important context for future features
 - `index.md` - Important context for future features
+- `project-overview.md` - Overview of entire tech stack. Important context for future features.
+- `project-scan-reports.json` - Tracks all recent documentation scans. Important to keep as projects can be scanned multiple times.
 
 Ask if there are any other docs they want archived that weren't automatically moved.
 

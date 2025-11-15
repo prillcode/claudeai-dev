@@ -65,9 +65,8 @@ def archive_bmad_docs(bmad_docs_dir, archive_name):
     items_to_archive = [
         'PRD.md',
         'epics.md',
-        'project-overview.md',
-        'project-scan-report.json',
         'sprint-status.yaml',
+        'tech-spec.md'
         'stories'  # directory
     ]
 

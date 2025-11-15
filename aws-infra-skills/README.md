@@ -8,23 +8,23 @@ This skill suite enables DevOps engineers to bring existing AWS infrastructure u
 
 ## Skills
 
-### 1. aws-resource-discovery
+### 1. aws-resource-discovery ✅
 Scan AWS accounts to discover existing resources with full properties and dependency detection.
 
-**Status:** v1.0 MVP (In Development)
+**Status:** v2.0 Complete
 **Outputs:** Resource inventory JSON files organized by resource type
 
-**Supported Resources (v1.0):**
+**Supported Resources:**
 - Lambda functions
 - DynamoDB tables
 - IAM roles and policies
 - S3 buckets
 - EventBridge rules
 
-### 2. cdk-code-generator
+### 2. cdk-code-generator ✅
 Generate TypeScript CDK code from discovered AWS resources.
 
-**Status:** Planned
+**Status:** v2.0 Complete
 **Inputs:** Resource inventory from `aws-resource-discovery`
 **Outputs:** TypeScript CDK constructs
 
@@ -32,31 +32,31 @@ Generate TypeScript CDK code from discovered AWS resources.
 - Reference-only: `.fromAttributes()` calls for existing resources
 - Full management: Complete construct definitions for CDK to manage
 
-### 3. cdk-stack-organizer
+### 3. cdk-stack-organizer ✅
 Intelligently organize CDK constructs into logical stacks with proper dependency management.
 
-**Status:** Planned
+**Status:** v2.0 Complete
 **Inputs:** Generated CDK code from `cdk-code-generator`
 **Outputs:** Organized CDK project structure (bin/, lib/, cdk.json)
 
 **Organization Strategies:**
 - By architectural layer (data, compute, API)
 - By service/application
-- By environment (dev/staging/prod)
 - By tags
+- Custom rules
 
-### 4. cdk-import-config-generator
+### 4. cdk-import-config-generator ✅
 Generate configurations and scripts to execute `cdk import` commands.
 
-**Status:** Planned
+**Status:** v2.0 Complete
 **Inputs:** Organized CDK project from `cdk-stack-organizer`
-**Outputs:** Import mappings, bash scripts, checklists
+**Outputs:** Import mappings, bash scripts, verification scripts
 
-### 5. aws-to-cdk-importer (Orchestrator)
+### 5. aws-to-cdk-importer (Orchestrator) ✅
 Coordinate end-to-end workflow across all component skills.
 
-**Status:** Future (v2.0)
-**Purpose:** Automate the complete discovery → generation → organization → import pipeline
+**Status:** v2.0 MVP Complete
+**Purpose:** Automate the complete discovery → generation → organization → import pipeline in a single command
 
 ## Workflow
 
@@ -69,6 +69,17 @@ Resource inventory → TypeScript constructs → Organized stacks → Import rea
 ```
 
 ## Use Cases
+
+### Orchestrated Usage (Recommended)
+Use the **aws-to-cdk-importer** orchestrator for end-to-end automation:
+```bash
+# Import serverless resources in one command
+"Use aws-to-cdk-importer to import my Lambda functions and DynamoDB tables
+from prod account in us-east-1, organized by layer"
+
+# With filters
+"Import resources tagged 'Project=MyApp' from dev account"
+```
 
 ### Standalone Usage
 Each skill works independently:
@@ -90,11 +101,7 @@ Skills naturally chain together via shared data formats:
 4. Generate import config → consumes cdk-organized/, produces import-ready project
 ```
 
-### Orchestrated Usage (Future)
-```bash
-# Automated end-to-end
-"Use aws-to-cdk-importer to import all Lambda functions from my prod account into CDK"
-```
+**👉 See [USE_CASES.md](./USE_CASES.md) for detailed conversation examples and common scenarios!**
 
 ## Target Users
 
@@ -116,24 +123,43 @@ Skills naturally chain together via shared data formats:
 
 ## Documentation
 
+- **[Use Cases & Examples](./USE_CASES.md)** - Natural language conversation examples showing how to use each skill with Claude Code
 - [Complete Roadmap](./AWS_CDK_IMPORTER_ROADMAP.md) - Detailed implementation plan, timelines, and future vision
 - Individual skill documentation in each skill's `SKILL.md` file
 
 ## Getting Started
 
-### Current Status (Week 1-2)
-Building **aws-resource-discovery v1.0 MVP** with core serverless resources (Lambda, DynamoDB, IAM, S3, EventBridge).
+### Quick Start
+
+The fastest way to get started is with natural language:
+
+```
+"Use aws-to-cdk-importer to import Lambda and DynamoDB resources
+from my prod account in us-east-1"
+```
+
+See **[USE_CASES.md](./USE_CASES.md)** for comprehensive examples and conversation templates!
+
+### Current Status
+
+✅ **Phase 1 & 2 Complete** - All 5 skills implemented and ready to use:
+- aws-resource-discovery (v2.0)
+- cdk-code-generator (v2.0)
+- cdk-stack-organizer (v2.0)
+- cdk-import-config-generator (v2.0)
+- aws-to-cdk-importer orchestrator (v2.0 MVP)
 
 ### Repository Structure
 ```
 aws-infra-skills/
 ├── README.md                          # This file
+├── USE_CASES.md                       # Natural language usage examples (NEW!)
 ├── AWS_CDK_IMPORTER_ROADMAP.md        # Complete roadmap and vision
-├── aws-resource-discovery/            # Skill 1 (In Development)
-├── cdk-code-generator/                # Skill 2 (Planned)
-├── cdk-stack-organizer/               # Skill 3 (Planned)
-├── cdk-import-config-generator/       # Skill 4 (Planned)
-└── aws-to-cdk-importer/               # Skill 5 - Orchestrator (Future)
+├── aws-resource-discovery/            # Skill 1 ✅
+├── cdk-code-generator/                # Skill 2 ✅
+├── cdk-stack-organizer/               # Skill 3 ✅
+├── cdk-import-config-generator/       # Skill 4 ✅
+└── aws-to-cdk-importer/               # Skill 5 - Orchestrator ✅
 ```
 
 ## Prerequisites
@@ -154,7 +180,13 @@ This is part of a mono-repo of Claude Code skills. Each skill follows the standa
 ## Version History
 
 - **2025-11-07**: Project initiated, roadmap created
-- **Current**: aws-resource-discovery v1.0 MVP in development
+- **2025-11-08**: Phase 1 & 2 complete - All 5 skills implemented (v2.0)
+  - aws-resource-discovery v2.0
+  - cdk-code-generator v2.0
+  - cdk-stack-organizer v2.0
+  - cdk-import-config-generator v2.0
+  - aws-to-cdk-importer orchestrator v2.0 MVP
+  - USE_CASES.md with natural language examples added
 
 ## Future Enhancements
 
@@ -169,5 +201,5 @@ See [AWS_CDK_IMPORTER_ROADMAP.md](./AWS_CDK_IMPORTER_ROADMAP.md) for complete ro
 ---
 
 **Maintained by:** Aaron Prill
-**Last Updated:** 2025-11-07
-**Current Focus:** aws-resource-discovery v1.0
+**Last Updated:** 2025-11-08
+**Current Status:** Phase 1 & 2 Complete - All 5 skills ready for use!

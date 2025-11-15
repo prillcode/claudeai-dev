@@ -11,8 +11,14 @@ This repository contains custom skills organized by category. Each skill is a se
 ### [workflow-skills/](workflow-skills/)
 Skills for development workflow automation and productivity.
 
-- **bmm-archive-feature-docs** - Archive completed BMAD feature documentation for workflow management
+- **bmm-archive-branch-docs** - Archive completed BMAD feature documentation for workflow management
 - **git-commit-helper** - Generate commits with clear messages from git diffs
+
+### [dev-skills/](dev-skills/)
+Skills for development workflow guidance and structured task management.
+
+- **feature-guide/** - Multi-file feature development with spec-dev workflow (feature-creator, spec-feature, dev-feature)
+- **task-guide/** - Lightweight bug fixes and maintenance tasks (task-creator, spec-task, dev-task)
 
 ### [aws-infra-skills/](aws-infra-skills/)
 Suite of composable skills for AWS infrastructure discovery and CDK code generation.
