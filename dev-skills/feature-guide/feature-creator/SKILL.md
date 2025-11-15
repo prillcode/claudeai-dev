@@ -43,7 +43,7 @@ In this phase, work with the user to create a rigorous, specification-grade prom
    - "What to avoid and why" sections
    - Extended thinking triggers for complex reasoning
 
-3. **Save Specification**: Store the generated prompt in `./features/` directory
+3. **Save Specification**: Store the generated prompt in `./.dev-docs/features/`.
    - Format: `001-feature-name.md`, `002-another-feature.md`, etc.
    - Numbered sequentially for easy tracking
    - May generate multiple prompts for complex features
@@ -53,13 +53,13 @@ In this phase, work with the user to create a rigorous, specification-grade prom
 
 Execute the generated specification in a fresh context:
 
-1. **Load Feature Spec**: Read the prompt(s) from `./features/`
+1. **Load Feature Spec**: Read the prompt(s) from `./.dev-docs/features/`
 2. **Execute in Clean Context**: Delegate to sub-agent with pristine specification
 3. **Support Execution Strategies**:
    - **Single prompt**: For focused features
    - **Parallel execution**: For independent components
    - **Sequential execution**: For dependent tasks
-4. **Archive on Completion**: Move completed prompts to `./features/completed/`
+4. **Archive on Completion**: Move completed prompts to `./.dev-docs/features/completed/`
 
 ## Benefits of This Approach
 
@@ -95,12 +95,12 @@ User: "I want to build a user authentication system with OAuth support"
 2. Claude invokes spec-feature to:
    - Ask about OAuth providers, token storage, session management
    - Generate comprehensive feature spec with XML structure
-   - Save to ./features/001-user-authentication.md
+   - Save to ./.dev-docs/features/001-user-authentication.md
 3. Claude invokes dev-feature to:
    - Load the specification
    - Execute in clean sub-agent context
    - Implement with clear success criteria
-   - Archive to ./features/completed/
+   - Archive to ./.dev-docs/features/completed/
 ```
 
 ## Notes

@@ -34,7 +34,7 @@ Create a lightweight task specification:
    - Simplified XML structure (objective, requirements, verification only)
    - Clear, focused instructions
    - Basic verification steps
-3. **Save Specification**: Store in `./tasks/` directory
+3. **Save Specification**: Store in `./.dev-docs/tasks/` directory
    - Format: `001-task-name.md`, `002-another-task.md`, etc.
    - Numbered sequentially for tracking
    - Always single task (no parallel/sequential logic)
@@ -44,10 +44,10 @@ Create a lightweight task specification:
 
 Execute the task specification in a fresh context:
 
-1. **Load Task Spec**: Read the specification from `./tasks/`
+1. **Load Task Spec**: Read the specification from `./.dev-docs/tasks/`
 2. **Execute Directly**: Delegate to sub-agent with the specification
 3. **Single Execution**: Tasks are always executed individually (no parallel/sequential)
-4. **Archive on Completion**: Move completed spec to `./tasks/completed/`
+4. **Archive on Completion**: Move completed spec to `./.dev-docs/tasks/completed/`
 
 ## Key Differences from Feature Creator
 
@@ -73,8 +73,8 @@ Execute the task specification in a fresh context:
 - No clutter from simple fixes
 
 **Tracking:**
-- All tasks documented in `./tasks/`
-- Completed work archived to `./tasks/completed/`
+- All tasks documented in `./.dev-docs/tasks/`
+- Completed work archived to `./.dev-docs/tasks/completed/`
 - Easy audit trail of maintenance work
 
 ## Related Skills
@@ -91,12 +91,12 @@ User: "Fix the bug where the login button doesn't work on mobile"
 1. task-creator provides workflow guidance
 2. Claude invokes spec-task to:
    - Create simple specification with objective, requirements, verification
-   - Save to ./tasks/001-fix-mobile-login-button.md
+   - Save to ./.dev-docs/tasks/001-fix-mobile-login-button.md
 3. Claude invokes dev-task to:
    - Load the specification
    - Execute in clean sub-agent context
    - Implement the fix
-   - Archive to ./tasks/completed/
+   - Archive to ./.dev-docs/tasks/completed/
 ```
 
 ## Task Examples

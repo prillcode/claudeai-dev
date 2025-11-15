@@ -1,13 +1,13 @@
 ---
 name: dev-task
-description: Execute task specifications from ./tasks/ directory in fresh sub-agent contexts. This skill should be used when implementing simple tasks after specifications have been created by spec-task. Always executes single tasks (no parallel/sequential logic). Archives completed specifications to ./tasks/completed/. Optimized for speed and simplicity.
+description: Execute task specifications from ./.dev-docs/tasks/ directory in fresh sub-agent contexts. This skill should be used when implementing simple tasks after specifications have been created by spec-task. Always executes single tasks (no parallel/sequential logic). Archives completed specifications to ./.dev-docs/tasks/completed/. Optimized for speed and simplicity.
 ---
 
 # Task Development Executor
 
 ## Overview
 
-Executes task specifications from `./tasks/` as delegated sub-tasks with fresh context. Designed for simple, single-task execution with minimal overhead.
+Executes task specifications from `./.dev-docs/tasks/` as delegated sub-tasks with fresh context. Designed for simple, single-task execution with minimal overhead.
 
 ## When to Use
 
@@ -56,14 +56,14 @@ Locate the requested task specification:
 
 **By number:**
 - Match zero-padded number (e.g., "5" matches "005-*.md")
-- Search in ./tasks/ directory
+- Search in ./.dev-docs/tasks/ directory
 
 **By name:**
 - Find files containing the name string
 - Example: "login" matches "005-fix-mobile-login.md"
 
 **Most recent:**
-- Use `ls -t ./tasks/*.md | head -1` to find latest
+- Use `ls -t ./.dev-docs/tasks/*.md | head -1` to find latest
 
 **Matching rules:**
 - Exactly one match → Use that file
@@ -78,12 +78,12 @@ Locate the requested task specification:
    - `description`: Brief task summary (e.g., "Fix mobile login button")
    - `prompt`: Full specification content
 3. **Wait for completion**: Sub-agent implements the task
-4. **Archive specification**: Move to `./tasks/completed/` with metadata
+4. **Archive specification**: Move to `./.dev-docs/tasks/completed/` with metadata
 5. **Report results**: Summarize what was accomplished
 
 **Archiving format:**
 ```
-./tasks/completed/[number]-[name].md
+./.dev-docs/tasks/completed/[number]-[name].md
 
 Add metadata at top:
 ---
@@ -98,8 +98,8 @@ status: completed
 Present clear summary:
 
 ```
-✓ Executed: ./tasks/005-fix-mobile-login.md
-✓ Archived to: ./tasks/completed/005-fix-mobile-login.md
+✓ Executed: ./.dev-docs/tasks/005-fix-mobile-login.md
+✓ Archived to: ./.dev-docs/tasks/completed/005-fix-mobile-login.md
 
 Results:
 [Summary of what was fixed or implemented]
@@ -121,38 +121,38 @@ By delegating to a sub-agent, implementation happens in fresh, focused context w
 - User can review spec and retry
 
 **If task file not found:**
-- List available tasks in ./tasks/
+- List available tasks in ./.dev-docs/tasks/
 - Ask user to clarify which task to execute
 
 **If multiple matches found:**
 - List all matching task files
 - Ask user to specify which one
 
-**If ./tasks/ directory doesn't exist:**
+**If ./.dev-docs/tasks/ directory doesn't exist:**
 - Report that no tasks have been created yet
 - Suggest using spec-task to create a task specification first
 
 ## Directory Setup
 
 **Before execution:**
-1. Verify ./tasks/ directory exists
+1. Verify ./.dev-docs/tasks/ directory exists
 2. Verify requested task file exists
-3. Ensure ./tasks/completed/ directory exists (create if needed)
+3. Ensure ./.dev-docs/tasks/completed/ directory exists (create if needed)
 
 **Archive location:**
-- Create ./tasks/completed/ if needed: `mkdir -p ./tasks/completed/`
+- Create ./.dev-docs/tasks/completed/ if needed: `mkdir -p ./.dev-docs/tasks/completed/`
 
 ## Example Workflow
 
 ```
 User: "Execute the login button fix"
 
-1. Search ./tasks/ for files containing "login button"
-2. Find: ./tasks/005-fix-mobile-login-button.md
+1. Search ./.dev-docs/tasks/ for files containing "login button"
+2. Find: ./.dev-docs/tasks/005-fix-mobile-login-button.md
 3. Read specification contents
 4. Spawn sub-agent with specification
 5. Sub-agent implements fix in clean context
-6. Archive to ./tasks/completed/005-fix-mobile-login-button.md
+6. Archive to ./.dev-docs/tasks/completed/005-fix-mobile-login-button.md
 7. Report: "Fixed z-index issue causing button to be unclickable on mobile"
 ```
 
@@ -162,8 +162,8 @@ User: "Execute the login button fix"
 |--------|----------|-------------|
 | **Execution** | Single task only | Supports parallel/sequential |
 | **Complexity** | Simple, lightweight | Full-featured |
-| **Directory** | ./tasks/ | ./features/ |
-| **Archive** | ./tasks/completed/ | ./features/completed/ |
+| **Directory** | ./.dev-docs/tasks/ | ./features/ |
+| **Archive** | ./.dev-docs/tasks/completed/ | ./features/completed/ |
 | **Use Case** | Bug fixes, maintenance | Complex features |
 
 ## Critical Notes

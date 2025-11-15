@@ -1,6 +1,6 @@
 ---
 name: spec-feature
-description: Expert prompt engineer that creates optimized, XML-structured feature specifications for complex software development. This skill should be used when creating specifications for features that require comprehensive planning, multiple files, or architectural decisions. Generates rigorous, specification-grade prompts with intelligent depth selection, extended thinking triggers, and clear success criteria. Always saves specifications to ./features/ directory.
+description: Expert prompt engineer that creates optimized, XML-structured feature specifications for complex software development. This skill should be used when creating specifications for features that require comprehensive planning, multiple files, or architectural decisions. Generates rigorous, specification-grade prompts with intelligent depth selection, extended thinking triggers, and clear success criteria. Always saves specifications to ./.dev-docs/features/ directory.
 ---
 
 # Feature Specification Creator
@@ -88,23 +88,23 @@ Should I proceed, or would you like to adjust anything?"
 
 ### Step 4: Generate and Save Specification(s)
 
-Create the specification(s) and save to the ./features/ folder.
+Create the specification(s) and save to the ./.dev-docs/features/ folder (create both directories if they do not exist).
 
 **For single specifications:**
 - Generate one specification file following the XML patterns below
-- Save as `./features/[number]-[name].md`
+- Save as `./.dev-docs/features/[number]-[name].md`
 
 **For multiple specifications:**
 - Determine how many specifications are needed (typically 2-4)
 - Generate each spec with clear, focused objectives
-- Save sequentially: `./features/[N]-[name].md`, `./features/[N+1]-[name].md`, etc.
+- Save sequentially: `./.dev-docs/features/[N]-[name].md`, `./.dev-docs/features/[N+1]-[name].md`, etc.
 - Each specification should be self-contained and executable independently
 
 **File naming:**
 - Check existing files in ./features/ to determine next number
 - Number format: 001, 002, 003, etc.
 - Name format: lowercase, hyphen-separated, max 5 words describing the feature
-- Example: `./features/001-implement-user-authentication.md`
+- Example: `./.dev-docs/features/001-implement-user-authentication.md`
 
 **File contents:**
 - ONLY the specification content, no explanations or metadata
@@ -291,9 +291,9 @@ Choose (1-4):
 
 ```
 ✓ Saved specifications:
-  - ./features/005-implement-auth.md
-  - ./features/006-implement-api.md
-  - ./features/007-implement-ui.md
+  - ./.dev-docs/features/005-implement-auth.md
+  - ./.dev-docs/features/006-implement-api.md
+  - ./.dev-docs/features/007-implement-ui.md
 
 Execution strategy: These can run in PARALLEL (independent components, no shared files)
 
@@ -311,9 +311,9 @@ Choose (1-4):
 
 ```
 ✓ Saved specifications:
-  - ./features/005-setup-database.md
-  - ./features/006-create-migrations.md
-  - ./features/007-seed-data.md
+  - ./.dev-docs/features/005-setup-database.md
+  - ./.dev-docs/features/006-create-migrations.md
+  - ./.dev-docs/features/007-seed-data.md
 
 Execution strategy: These must run SEQUENTIALLY (dependencies: 005 → 006 → 007)
 
@@ -332,9 +332,9 @@ When user chooses to execute, invoke the **dev-feature** skill with appropriate 
 ## Setup Requirements
 
 Before saving any specifications:
-1. Check if `./features/` directory exists
-2. If not, create it: `!mkdir -p ./features/`
-3. Read `!ls ./features/ 2>/dev/null | sort -V | tail -1` to determine the next number in sequence
+1. Check if `./.dev-docs/features/` directory exists
+2. If not, create it: `!mkdir -p ./.dev-docs/features/`
+3. Read `!ls ./.dev-docs/features/ 2>/dev/null | sort -V | tail -1` to determine the next number in sequence
 4. If no files exist, start with 001
 
 ## Examples of When to Ask for Clarification

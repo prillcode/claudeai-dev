@@ -1,6 +1,6 @@
 ---
 name: spec-task
-description: Creates lightweight task specifications for simple bug fixes and maintenance work. This skill should be used when creating specifications for straightforward tasks that don't require extensive planning. Generates simplified XML-structured specifications with only essential elements (objective, requirements, verification). Always saves specifications to ./tasks/ directory. Designed for speed and simplicity.
+description: Creates lightweight task specifications for simple bug fixes and maintenance work. This skill should be used when creating specifications for straightforward tasks that don't require extensive planning. Generates simplified XML-structured specifications with only essential elements (objective, requirements, verification). Always saves specifications to ./.dev-docs/tasks/ directory. Designed for speed and simplicity.
 ---
 
 # Task Specification Creator
@@ -50,7 +50,7 @@ Create a lightweight specification with simplified XML structure:
 
 ### Step 3: Save Specification
 
-Save to `./tasks/` directory:
+Save to `./.dev-docs/tasks/` directory:
 - Format: `001-task-name.md`, `002-another-task.md`, etc.
 - Check existing files to determine next number
 - Lowercase, hyphen-separated naming
@@ -132,7 +132,7 @@ Before completing, verify:
 Present simple options to the user:
 
 ```
-✓ Saved task specification to ./tasks/005-fix-mobile-login-button.md
+✓ Saved task specification to ./.dev-docs/tasks/005-fix-mobile-login-button.md
 
 What's next?
 
@@ -148,9 +148,9 @@ When user chooses to execute, invoke the **dev-task** skill.
 ## Setup Requirements
 
 Before saving any specifications:
-1. Check if `./tasks/` directory exists
-2. If not, create it: `!mkdir -p ./tasks/`
-3. Read `!ls ./tasks/ 2>/dev/null | sort -V | tail -1` to determine next number
+1. Check if `./.dev-docs/tasks/` directory exists
+2. If not, create it: `!mkdir -p ./.dev-docs/tasks/`
+3. Read `!ls ./.dev-docs/tasks/ 2>/dev/null | sort -V | tail -1` to determine next number
 4. If no files exist, start with 001
 
 ## Task Specification Examples

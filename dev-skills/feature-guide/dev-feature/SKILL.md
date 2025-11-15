@@ -1,13 +1,13 @@
 ---
 name: dev-feature
-description: Execute feature specifications from ./features/ directory in fresh sub-agent contexts. This skill should be used when implementing features after specifications have been created by spec-feature. Supports single feature execution, parallel execution of multiple independent features, and sequential execution of dependent features. Archives completed specifications to ./features/completed/.
+description: Execute feature specifications from ./.dev-docs/features/ directory in fresh sub-agent contexts. This skill should be used when implementing features after specifications have been created by spec-feature. Supports single feature execution, parallel execution of multiple independent features, and sequential execution of dependent features. Archives completed specifications to ./.dev-docs/features/completed/.
 ---
 
 # Feature Development Executor
 
 ## Overview
 
-Executes feature specifications from `./features/` as delegated sub-tasks with fresh context. This keeps the main conversation clean while implementation happens in focused, isolated contexts.
+Executes feature specifications from `./.dev-docs/features/` as delegated sub-tasks with fresh context. This keeps the main conversation clean while implementation happens in focused, isolated contexts.
 
 ## When to Use
 
@@ -41,7 +41,7 @@ Execute features one at a time in order. Use when:
 **Single feature:**
 - By number: "Execute feature 005" or "Run feature 5"
 - By name: "Execute user-authentication" or "Run dashboard feature"
-- Most recent: "Execute the latest feature" (finds newest in ./features/)
+- Most recent: "Execute the latest feature" (finds newest in ./.dev-docs/features/)
 
 **Multiple features:**
 - Parallel: "Execute features 005, 006, and 007 in parallel"
@@ -56,14 +56,14 @@ For each requested feature:
 
 **By number:**
 - Match zero-padded number (e.g., "5" matches "005-*.md", "42" matches "042-*.md")
-- Search in ./features/ directory
+- Search in ./.dev-docs/features/ directory
 
 **By name:**
 - Find files containing the name string in filename
 - Example: "auth" matches "005-user-authentication.md"
 
 **Most recent:**
-- Use `ls -t ./features/*.md | head -1` to find latest
+- Use `ls -t ./.dev-docs/features/*.md | head -1` to find latest
 
 **Matching rules:**
 - Exactly one match → Use that file
@@ -80,12 +80,12 @@ For each requested feature:
    - Set `description` to brief feature summary
    - Set `prompt` to the full specification content
 3. Wait for sub-agent to complete implementation
-4. Archive specification to `./features/completed/` with metadata
+4. Archive specification to `./.dev-docs/features/completed/` with metadata
 5. Return results to user
 
 **Archiving format:**
 ```
-./features/completed/[number]-[name].md
+./.dev-docs/features/completed/[number]-[name].md
 
 Add metadata at top of archived file:
 ---
@@ -108,7 +108,7 @@ status: completed
    (All in one message with multiple tool calls)
    ```
 3. Wait for ALL sub-agents to complete
-4. Archive all specifications to ./features/completed/
+4. Archive all specifications to ./.dev-docs/features/completed/
 5. Return consolidated results showing what each feature accomplished
 
 #### Sequential Execution
@@ -130,8 +130,8 @@ Present clear summary of execution:
 
 **Single feature:**
 ```
-✓ Executed: ./features/005-implement-dashboard.md
-✓ Archived to: ./features/completed/005-implement-dashboard.md
+✓ Executed: ./.dev-docs/features/005-implement-dashboard.md
+✓ Archived to: ./.dev-docs/features/completed/005-implement-dashboard.md
 
 Results:
 [Summary of what was implemented]
@@ -140,11 +140,11 @@ Results:
 **Parallel execution:**
 ```
 ✓ Executed in PARALLEL:
-  - ./features/005-implement-auth.md
-  - ./features/006-implement-api.md
-  - ./features/007-implement-ui.md
+  - ./.dev-docs/features/005-implement-auth.md
+  - ./.dev-docs/features/006-implement-api.md
+  - ./.dev-docs/features/007-implement-ui.md
 
-✓ All archived to ./features/completed/
+✓ All archived to ./.dev-docs/features/completed/
 
 Results:
 Feature 005 (Auth): [summary]
@@ -155,11 +155,11 @@ Feature 007 (UI): [summary]
 **Sequential execution:**
 ```
 ✓ Executed SEQUENTIALLY:
-  1. ./features/005-setup-database.md → Success
-  2. ./features/006-create-migrations.md → Success
-  3. ./features/007-seed-data.md → Success
+  1. ./.dev-docs/features/005-setup-database.md → Success
+  2. ./.dev-docs/features/006-create-migrations.md → Success
+  3. ./.dev-docs/features/007-seed-data.md → Success
 
-✓ All archived to ./features/completed/
+✓ All archived to ./.dev-docs/features/completed/
 
 Results:
 Step 1 (Database): [summary]
@@ -185,7 +185,7 @@ This separation improves implementation quality and maintains conversation clari
 - Sequential execution: Stop immediately, do not execute remaining features, report failure point
 
 **If feature file not found:**
-- List available features in ./features/
+- List available features in ./.dev-docs/features/
 - Ask user to clarify which feature to execute
 
 **If multiple matches found:**
@@ -195,12 +195,12 @@ This separation improves implementation quality and maintains conversation clari
 ## Directory Setup
 
 **Before execution:**
-1. Verify ./features/ directory exists
+1. Verify ./.dev-docs/features/ directory exists
 2. Verify requested feature files exist
-3. Ensure ./features/completed/ directory exists (create if needed)
+3. Ensure ./.dev-docs/features/completed/ directory exists (create if needed)
 
 **Archive location:**
-- Create ./features/completed/ if it doesn't exist: `mkdir -p ./features/completed/`
+- Create ./.dev-docs/features/completed/ if it doesn't exist: `mkdir -p ./.dev-docs/features/completed/`
 
 ## Critical Notes
 
