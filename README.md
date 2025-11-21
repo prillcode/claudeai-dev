@@ -8,18 +8,13 @@ This repository contains custom skills organized by category. Each skill is a se
 
 ## Skill Categories
 
-### [workflow-skills/](workflow-skills/)
-Skills for development workflow automation and productivity.
-
-- **bmm-archive-branch-docs** - Archive completed BMAD feature documentation for workflow management
-- **git-commit-helper** - Generate commits with clear messages from git diffs
-
 ### [dev-skills/](dev-skills/)
 Unified development workflow system for all software development tasks with adaptive complexity.
 
 - **dev-orchestrator** - Orchestrates complete development workflow from specification to completion
 - **dev-spec** - Creates specifications with adaptive complexity (lightweight for bugs, comprehensive for features)
 - **dev-execute** - Executes specifications with two-phase testing workflow (implement → test → confirm → archive)
+- **git-commit-helper** - Generate conventional commit messages from git diffs
 
 ### [aws-infra-skills/](aws-infra-skills/)
 Suite of composable skills for AWS infrastructure discovery and CDK code generation.

@@ -4,11 +4,12 @@ A unified collection of Claude Code skills for structured software development w
 
 ## Overview
 
-This directory contains a unified development workflow system with three complementary skills:
+This directory contains a unified development workflow system with four complementary skills:
 
 - **dev-orchestrator** - Orchestrates the complete development workflow
 - **dev-spec** - Creates specifications with adaptive complexity
 - **dev-execute** - Executes specifications with two-phase testing workflow
+- **git-commit-helper** - Creates conventional commit messages from git diffs
 
 The workflow automatically adapts to task complexity, providing lightweight specifications for simple bugs and comprehensive specifications for complex features.
 
@@ -69,6 +70,33 @@ Executes specifications in fresh sub-agent contexts with two-phase testing workf
 - Archives completed work to `[configured_path]/completed/`
 - Never archives automatically - waits for user confirmation
 
+### git-commit-helper
+
+Creates conventional commit messages from git diffs with proper semantic prefixes and formatting.
+
+**Purpose:**
+- Generates consistent commit messages following conventional commit standards
+- Analyzes git diffs to determine appropriate prefix (fix:/feat:/chore:)
+- Creates detailed descriptions with affected components
+- Ensures commit messages explain what and why
+
+**Semantic Prefixes:**
+- **fix:** - Bug fixes or corrections to existing functionality
+- **feat:** - New features, components, or enhancements
+- **chore:** - Documentation, dependencies, or maintenance tasks
+
+**Features:**
+- Automatic prefix selection based on change analysis
+- Summary line under 50 characters
+- Detailed bulleted descriptions with affected files/components
+- Present tense imperative style
+- No Claude Code footers
+
+**When to use:**
+- After implementing features or fixes
+- When creating git commits
+- When you need help writing commit messages
+
 ## Unified Workflow
 
 All development work follows the same systematic approach:
@@ -77,6 +105,7 @@ All development work follows the same systematic approach:
 2. **Implementation** → dev-execute runs specification in sub-agent
 3. **Testing** → User performs manual testing with provided steps
 4. **Completion** → User confirms, feature is archived
+5. **Commit** → git-commit-helper creates conventional commit message (optional)
 
 The complexity adapts automatically based on the task:
 - Simple bug fix → Lightweight spec, quick implementation
@@ -113,7 +142,9 @@ dev-skills/
 │   └── SKILL.md
 ├── dev-spec/                    # Specification creator
 │   └── SKILL.md
-└── dev-execute/                 # Specification executor
+├── dev-execute/                 # Specification executor
+│   └── SKILL.md
+└── git-commit-helper/           # Commit message generator
     └── SKILL.md
 ```
 
@@ -129,5 +160,4 @@ dev-skills/
 
 ## See Also
 
-- [../workflow-skills/](../workflow-skills/) - Related workflow automation skills
 - [../aws-infra-skills/](../aws-infra-skills/) - AWS infrastructure discovery and CDK generation
