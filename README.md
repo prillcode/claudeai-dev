@@ -15,10 +15,11 @@ Skills for development workflow automation and productivity.
 - **git-commit-helper** - Generate commits with clear messages from git diffs
 
 ### [dev-skills/](dev-skills/)
-Skills for development workflow guidance and structured task management.
+Unified development workflow system for all software development tasks with adaptive complexity.
 
-- **feature-guide/** - Multi-file feature development with spec-dev workflow (feature-creator, spec-feature, dev-feature)
-- **task-guide/** - Lightweight bug fixes and maintenance tasks (task-creator, spec-task, dev-task)
+- **dev-orchestrator** - Orchestrates complete development workflow from specification to completion
+- **dev-spec** - Creates specifications with adaptive complexity (lightweight for bugs, comprehensive for features)
+- **dev-execute** - Executes specifications with two-phase testing workflow (implement → test → confirm → archive)
 
 ### [aws-infra-skills/](aws-infra-skills/)
 Suite of composable skills for AWS infrastructure discovery and CDK code generation.
@@ -67,4 +68,4 @@ This is a personal repository of skills developed for my own workflows, but feel
 ---
 
 **Author:** Aaron Prill ([@prillcode](https://github.com/prillcode))
-**Last Updated:** 2025-11-07
+**Last Updated:** 2025-11-21

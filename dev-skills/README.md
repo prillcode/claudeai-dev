@@ -1,112 +1,133 @@
 # Development Skills
 
-A collection of Claude Code skills for structured software development workflows. These skills provide guidance for both complex feature development and lightweight task management.
+A unified collection of Claude Code skills for structured software development workflows. These skills handle all types of development work - from simple bug fixes to complex multi-file features - with adaptive specification depth and systematic testing guidance.
 
 ## Overview
 
-This directory contains two complementary skill systems:
+This directory contains a unified development workflow system with three complementary skills:
 
-- **feature-guide/** - For complex, multi-file feature development
-- **task-guide/** - For lightweight bug fixes and maintenance tasks
+- **dev-orchestrator** - Orchestrates the complete development workflow
+- **dev-spec** - Creates specifications with adaptive complexity
+- **dev-execute** - Executes specifications with two-phase testing workflow
 
-Each system provides a complete workflow from specification to implementation, with the appropriate level of structure and automation for the task at hand.
+The workflow automatically adapts to task complexity, providing lightweight specifications for simple bugs and comprehensive specifications for complex features.
 
-## Skill Collections
+## Skills
 
-### [feature-guide/](feature-guide/)
+### dev-orchestrator
 
-For complex development work requiring architectural decisions, multiple files, or significant refactoring.
+Orchestrates systematic development workflow for any software development task.
 
-**Skills included:**
-- **feature-creator** - Orchestrator that provides workflow guidance for the spec→dev process
-- **spec-feature** - Creates structured feature specifications with interactive clarification
-- **dev-feature** - Executes feature specifications with support for parallel/sequential workflows
-
-**Features:**
-- Complete XML specification structure (objective, context, requirements, implementation, verification, success criteria, avoid)
-- Interactive clarifying questions for complex requirements
-- Support for single, multiple, parallel, or sequential prompt execution
-- Saves specifications to `./features/` directory
-- Archives completed features to `./features/completed/`
+**Purpose:**
+- Guides the complete workflow from requirements to completion
+- Invokes dev-spec for specification creation
+- Invokes dev-execute for implementation
+- Manages testing and completion phases
 
 **When to use:**
-- Building new features or capabilities
-- Making architectural changes
-- Multi-file refactoring
-- Tasks requiring planning and coordination
+- Any development work (bugs, features, enhancements, refactoring)
+- User requests to implement, build, develop, or fix code
+- Need systematic approach with testing guidance
 
-### [task-guide/](task-guide/)
+### dev-spec
 
-For straightforward development work like bug fixes, small updates, or maintenance tasks.
+Creates optimized, XML-structured specifications for all development tasks.
 
-**Skills included:**
-- **task-creator** - Orchestrator that provides workflow guidance for simple tasks
-- **spec-task** - Creates lightweight task specifications
-- **dev-task** - Executes task specifications with simplified verification
+**Purpose:**
+- Transforms vague requests into comprehensive specifications
+- Adapts depth based on task complexity automatically
+- Provides interactive clarification for ambiguous requirements
+- Includes testing step generation guidance
+
+**Adaptive Complexity:**
+- **Simple tasks** (bug fixes, single-file changes) → Lightweight specification
+- **Moderate tasks** (multiple files, some design decisions) → Standard specification
+- **Complex tasks** (multi-file, architectural decisions) → Comprehensive specification
 
 **Features:**
-- Simplified XML structure (objective, requirements, verification only)
-- No clarifying questions (assumes task clarity)
-- Single-prompt execution model
-- Saves specifications to `./tasks/` directory
-- Archives completed tasks to `./tasks/completed/`
+- XML-structured specifications for clarity
+- Configurable storage directory (defaults to `./.dev-docs/features/`)
+- Sequential numbering (001, 002, 003...)
+- Support for single, parallel, or sequential execution strategies
 
-**When to use:**
-- Fixing bugs
-- Making small tweaks or updates
-- Single-file modifications
-- Straightforward maintenance tasks
+### dev-execute
 
-## Key Differences
+Executes specifications in fresh sub-agent contexts with two-phase testing workflow.
 
-| Aspect | Feature-Guide | Task-Guide |
-|--------|---------------|------------|
-| **Complexity** | Multi-file, architectural changes | Single-file, straightforward fixes |
-| **XML Structure** | Full (7+ tags) | Simplified (3 tags) |
-| **Clarification** | Interactive questions | Skip questions |
-| **Execution** | Parallel/Sequential support | Single-prompt only |
-| **Storage** | `./features/` → `./features/completed/` | `./tasks/` → `./tasks/completed/` |
-| **Triggers** | Complex tasks + "implement", "build", "feature" | Simple tasks + "fix", "bug", "tweak", "update" |
+**Purpose:**
+- Implements specifications in isolated contexts
+- Provides suggested manual testing steps
+- Manages completion workflow after user testing
 
-## Workflow Approach
+**Two-Phase Workflow:**
+1. **Implementation Phase** - Sub-agent implements and provides testing steps
+2. **Completion Phase** - User tests, then explicitly confirms completion for archival
 
-Both skill systems follow a similar two-phase workflow:
+**Features:**
+- Single, parallel, or sequential execution modes
+- Clean sub-agent contexts for focused implementation
+- Archives completed work to `[configured_path]/completed/`
+- Never archives automatically - waits for user confirmation
 
-1. **Specification Phase** - Define what needs to be done
-   - `spec-feature` for complex features
-   - `spec-task` for simple tasks
+## Unified Workflow
 
-2. **Development Phase** - Execute the specification
-   - `dev-feature` for features
-   - `dev-task` for tasks
+All development work follows the same systematic approach:
 
-The orchestrator skills (feature-creator, task-creator) provide guidance on when and how to use each phase, but Claude can also invoke the spec/dev skills directly as needed.
+1. **Specification** → dev-spec creates appropriate specification
+2. **Implementation** → dev-execute runs specification in sub-agent
+3. **Testing** → User performs manual testing with provided steps
+4. **Completion** → User confirms, feature is archived
+
+The complexity adapts automatically based on the task:
+- Simple bug fix → Lightweight spec, quick implementation
+- Complex feature → Comprehensive spec, thorough implementation
+
+## Configuration
+
+The skills support configurable directory storage via `CLAUDE.md`:
+
+```markdown
+## Development Workflow
+
+dev_docs_directory: ./docs/features
+```
+
+If not configured, prompts user on first use and saves choice to root `CLAUDE.md`. Default: `./.dev-docs`
 
 ## Usage
 
-These skills are designed to work proactively with Claude Code:
+These skills work proactively with Claude Code:
 
-- When you request complex feature work, Claude may use the feature-guide skills
-- When you request bug fixes or simple updates, Claude may use the task-guide skills
-- You can also explicitly reference the skills or workflows in your prompts
+- Request any development work → Claude may invoke dev-orchestrator
+- dev-orchestrator guides through spec → implement → test → complete workflow
+- Skills automatically adapt specification depth to task complexity
+- Testing steps provided after implementation
+- Explicit user confirmation required before archival
 
 ## Directory Structure
 
 ```
 dev-skills/
 ├── README.md                    # This document
-├── PLAN.md                      # Implementation plan and design notes
-├── feature-guide/
-│   ├── feature-creator/         # Workflow orchestrator
-│   ├── spec-feature/            # Feature specification creator
-│   └── dev-feature/             # Feature implementation executor
-└── task-guide/
-    ├── task-creator/            # Workflow orchestrator
-    ├── spec-task/               # Task specification creator
-    └── dev-task/                # Task implementation executor
+├── dev-orchestrator/            # Workflow orchestrator
+│   └── SKILL.md
+├── dev-spec/                    # Specification creator
+│   └── SKILL.md
+└── dev-execute/                 # Specification executor
+    └── SKILL.md
 ```
+
+## Key Features
+
+- **Unified Workflow** - Single workflow for all development tasks
+- **Adaptive Complexity** - Automatically adjusts to task complexity
+- **Testing First** - Manual testing guidance built into every implementation
+- **Two-Phase Completion** - Implement → Test → Confirm → Archive
+- **Configurable Storage** - Set directory per project via CLAUDE.md
+- **Clean Contexts** - Implementation happens in fresh sub-agent contexts
+- **Flexible Execution** - Single, parallel, or sequential execution modes
 
 ## See Also
 
-- [PLAN.md](PLAN.md) - Detailed implementation plan and design notes
 - [../workflow-skills/](../workflow-skills/) - Related workflow automation skills
+- [../aws-infra-skills/](../aws-infra-skills/) - AWS infrastructure discovery and CDK generation
