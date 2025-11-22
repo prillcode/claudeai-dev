@@ -160,4 +160,5 @@ dev-skills/
 
 ## See Also
 
-- [../aws-infra-skills/](../aws-infra-skills/) - AWS infrastructure discovery and CDK generation
+- [../infra-skills/](../infra-skills/) - AWS infrastructure discovery and CDK generation
+- [../agile-skills/](../agile-skills/) - Epic and feature decomposition into stories

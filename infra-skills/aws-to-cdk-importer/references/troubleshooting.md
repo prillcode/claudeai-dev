@@ -626,7 +626,7 @@ ModuleNotFoundError: No module named 'boto3'
 ```
 ❌ Environment validation failed:
    Missing required component skills: cdk-code-generator
-   Expected location: /path/to/aws-infra-skills
+   Expected location: /path/to/infra-skills
 ```
 
 **Cause:** Component skill not installed or in wrong location.
@@ -635,12 +635,12 @@ ModuleNotFoundError: No module named 'boto3'
 
 1. **Verify skill locations:**
    ```bash
-   ls -la aws-infra-skills/
+   ls -la infra-skills/
    ```
 
 2. **Expected structure:**
    ```
-   aws-infra-skills/
+   infra-skills/
    ├── aws-resource-discovery/
    ├── cdk-code-generator/
    ├── cdk-stack-organizer/

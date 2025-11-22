@@ -16,16 +16,25 @@ Unified development workflow system for all software development tasks with adap
 - **dev-execute** - Executes specifications with two-phase testing workflow (implement → test → confirm → archive)
 - **git-commit-helper** - Generate conventional commit messages from git diffs
 
-### [aws-infra-skills/](aws-infra-skills/)
+### [infra-skills/](infra-skills/)
 Suite of composable skills for AWS infrastructure discovery and CDK code generation.
 
-- **aws-resource-discovery** *(In Development)* - Scan AWS accounts and discover resources with dependency detection
-- **cdk-code-generator** *(Planned)* - Generate TypeScript CDK code from AWS resources
-- **cdk-stack-organizer** *(Planned)* - Organize CDK code into logical stacks
-- **cdk-import-config-generator** *(Planned)* - Generate CDK import configurations
-- **aws-to-cdk-importer** *(Future)* - Orchestrate end-to-end AWS-to-CDK workflow
+- **aws-resource-discovery** - Scan AWS accounts and discover resources with dependency detection
+- **cdk-code-generator** - Generate TypeScript CDK code from AWS resources
+- **cdk-stack-organizer** - Organize CDK code into logical stacks
+- **cdk-import-config-generator** - Generate CDK import configurations
+- **aws-to-cdk-importer** - Orchestrate end-to-end AWS-to-CDK workflow
 
-See [aws-infra-skills/AWS_CDK_IMPORTER_ROADMAP.md](aws-infra-skills/AWS_CDK_IMPORTER_ROADMAP.md) for complete roadmap.
+See [infra-skills/AWS_CDK_IMPORTER_ROADMAP.md](infra-skills/AWS_CDK_IMPORTER_ROADMAP.md) for complete roadmap.
+
+### [agile-skills/](agile-skills/)
+Skills for decomposing agile artifacts into actionable development work.
+
+- **epic-feature-creator** - Transform JIRA epics into technical feature breakdowns
+- **feature-story-creator** - Break features into user stories ready for dev-spec
+- **story-task-creator** *(Planned)* - Split large stories into sub-tasks
+
+See [agile-skills/README.md](agile-skills/README.md) for complete workflow.
 
 ## Skill Structure
 

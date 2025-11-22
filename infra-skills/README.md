@@ -151,9 +151,9 @@ See **[USE_CASES.md](./USE_CASES.md)** for comprehensive examples and conversati
 
 ### Repository Structure
 ```
-aws-infra-skills/
+infra-skills/
 ├── README.md                          # This file
-├── USE_CASES.md                       # Natural language usage examples (NEW!)
+├── USE_CASES.md                       # Natural language usage examples
 ├── AWS_CDK_IMPORTER_ROADMAP.md        # Complete roadmap and vision
 ├── aws-resource-discovery/            # Skill 1 ✅
 ├── cdk-code-generator/                # Skill 2 ✅
